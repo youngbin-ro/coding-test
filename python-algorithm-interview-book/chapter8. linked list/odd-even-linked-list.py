@@ -64,7 +64,6 @@ def second_solution(head):
     return head
 
 
-
 if __name__ == "__main__":
     head1 = make_input([2, 1, 3, 5, 6, 4])
     print(to_list(head1))
