@@ -59,10 +59,17 @@ def second_solution(l1, l2):
         sum = 0
         if l1:
             sum += l1.val
-
+            l1 = l1.next
+        if l2:
+            sum += l2.val
+            l2 = l2.next
+        carry, val = divmod(sum + carry, 10)
+        head.next = ListNode(val)
+        head = head.next
+    return to_list(root.next)
 
 
 if __name__ == "__main__":
     head1, head2 = make_input([2, 4, 3], [5, 6, 4])
     print(to_list(head1), to_list(head2))
-    print(first_solution(head1, head2))
+    print(second_solution(head1, head2))
