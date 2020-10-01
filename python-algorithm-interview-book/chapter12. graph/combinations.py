@@ -45,4 +45,3 @@ if __name__ == "__main__":
 
     n1, k1 = 4, 3
     print(third_solution(n1, k1))
-
