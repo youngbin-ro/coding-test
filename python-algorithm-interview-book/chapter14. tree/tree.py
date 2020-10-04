@@ -25,7 +25,10 @@ def make_binary_tree_old(values: list) -> TreeNode:
     return root
 
 
-def make_binary_tree(values: list) -> TreeNode:
+def make_binary_tree(values: list) -> TreeNode or None:
+    if not (values and values[0] is not None):
+        return None
+
     root = TreeNode(values[0])
     node_queue = collections.deque([root])
     value_queue = collections.deque(values[1:])
@@ -39,11 +42,11 @@ def make_binary_tree(values: list) -> TreeNode:
         while value_queue and not (left_check and right_check):
             value = value_queue.popleft()
             if not left_check:
-                node.left = TreeNode(value) if value else None
+                node.left = TreeNode(value) if value is not None else None
                 node_queue.append(node.left)
                 left_check = True
             elif not right_check:
-                node.right = TreeNode(value) if value else None
+                node.right = TreeNode(value) if value is not None else None
                 node_queue.append(node.right)
                 right_check = True
     return root
@@ -56,7 +59,7 @@ def tree2list(root: TreeNode) -> list:
     result = [root.val]
     while queue:
         node = queue.popleft()
-        if not node or not (node.left or node.right):
+        if not node:
             continue
         for child in [node.left, node.right]:
             if child:
@@ -64,4 +67,11 @@ def tree2list(root: TreeNode) -> list:
                 queue.append(child)
             else:
                 result.append(None)
-    return result
+
+    last_idx = 0
+    for idx, value in enumerate(reversed(result)):
+        if value is not None:
+            last_idx = -(idx + 1)
+            break
+    last_idx += 1
+    return result if last_idx == 0 else result[:last_idx]
