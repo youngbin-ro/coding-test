@@ -8,7 +8,7 @@ class TreeNode:
         self.right = right
 
 
-def make_binary_tree(values: list) -> TreeNode:
+def make_binary_tree_old(values: list) -> TreeNode:
     root = TreeNode(values[0])
     nodes = [root]
     for idx in range(1, len(values)):
@@ -22,6 +22,30 @@ def make_binary_tree(values: list) -> TreeNode:
         else:
             nodes[div].left = node
         nodes.append(node)
+    return root
+
+
+def make_binary_tree(values: list) -> TreeNode:
+    root = TreeNode(values[0])
+    node_queue = collections.deque([root])
+    value_queue = collections.deque(values[1:])
+
+    while node_queue:
+        node = node_queue.popleft()
+        if node is None:
+            continue
+
+        left_check, right_check = False, False
+        while value_queue and not (left_check and right_check):
+            value = value_queue.popleft()
+            if not left_check:
+                node.left = TreeNode(value) if value else None
+                node_queue.append(node.left)
+                left_check = True
+            elif not right_check:
+                node.right = TreeNode(value) if value else None
+                node_queue.append(node.right)
+                right_check = True
     return root
 
 
