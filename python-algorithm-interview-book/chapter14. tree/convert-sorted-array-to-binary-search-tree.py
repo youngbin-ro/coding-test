@@ -1,4 +1,3 @@
-import collections
 from typing import List
 from tree import TreeNode, make_binary_tree, tree2list
 
