@@ -8,3 +8,4 @@ if __name__ == "__main__":
 
     s, t = "rat", "car"
     print(first_solution(s, t))
+pycharm 
