@@ -54,4 +54,3 @@ if __name__ == "__main__":
     print(factorial1(n_))
     print(factorial1(n_))
     print(factorial1(n_))
-

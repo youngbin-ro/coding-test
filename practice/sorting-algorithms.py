@@ -130,7 +130,7 @@ if __name__ == "__main__":
     print("bubble sort processing time: {:.4f}".format(time.time() - start))
     nums_.sort()
     assert nums_sorted == nums_
-    
+
     # QUICK SORT
     sys.setrecursionlimit(10000)
     start = time.time()
